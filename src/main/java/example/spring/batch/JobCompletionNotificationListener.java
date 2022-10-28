@@ -28,10 +28,11 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 
     log.info("### JOB 끝남 ####");
 
-    jdbcTemplate.query("SELECT first_name, last_name FROM people",
+    jdbcTemplate.query(
+        "SELECT first_name, last_name FROM people",
         (rs, row) -> new Person(
-            rs.getString(1),
-            rs.getString(2))
+            rs.getString(1), rs.getString(2)
+        )
     ).forEach(person -> log.info(" <" + person + "> 디비에 등록됨"));
 
   }
